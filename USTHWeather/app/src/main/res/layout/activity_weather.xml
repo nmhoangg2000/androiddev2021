@@ -7,4 +7,27 @@
     android:id="@+id/container"
     tools:context=".WeatherActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <fragment
+            android:layout_margin="16dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            class="vn.edu.usth.weather.WeatherFragment"
+            android:id="@+id/detail_weather"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_container"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
+
+        </FrameLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
