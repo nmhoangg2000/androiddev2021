@@ -3,18 +3,20 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="detail_forecast">Cloudy \n 24C</string>
-    <string name="Thursday" >Thu</string>
-    <string name="Wednesday" >Wed</string>
-    <string name="showers" ></string>
-    <string name="Tuesday" >Tue</string>
-    <string name="scattered_showers" >Showers</string>
-    <string name="rain" >Rain</string>
-    <string name="partly_cloudy" >Cloudy</string>
-    <string name="Monday" >Mon</string>
-    <string name="thunderstorms" >Thunderstorm</string>
-    <string name="Sunday" >Sun</string>
-    <string name="Friday" >Fri</string>
-    <string name="mostly_cloudy" >Mostly Cloudy</string>
+    <string name="Thursday">Thu</string>
+    <string name="Wednesday">Wed</string>
+    <string name="showers"></string>
+    <string name="Tuesday">Tue</string>
+    <string name="scattered_showers">Showers</string>
+    <string name="rain">Rain</string>
+    <string name="partly_cloudy">Cloudy</string>
+    <string name="Monday">Mon</string>
+    <string name="thunderstorms">Thunderstorm</string>
+    <string name="Sunday">Sun</string>
+    <string name="Friday">Fri</string>
+    <string name="mostly_cloudy">Mostly Cloudy</string>
     <string name="Saturday">Sat</string>
     <string name="paris">Paris</string>
+    <string name="action_refresh" />
+    <string name="action_settings" />
 </resources>

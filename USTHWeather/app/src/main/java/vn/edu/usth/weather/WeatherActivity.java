@@ -7,9 +7,12 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -23,6 +26,8 @@ import java.io.OutputStream;
 
 public class WeatherActivity extends AppCompatActivity {
     private static final String STATE = "Message";
+
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +116,27 @@ public class WeatherActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_refresh:
+                Toast.makeText(this, "Refreshing...", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_settings:
+                Log.d(STATE, "onOptionsItemSelected: click");
+                Intent intent = new Intent(this, PrefActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     private void copyFileToExternalStorage(int resourceId, String resourceName) {
         try {
             File file = new File(getExternalFilesDir(null), resourceName);
