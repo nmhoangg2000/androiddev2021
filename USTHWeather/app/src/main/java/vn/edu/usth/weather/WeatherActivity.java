@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -52,37 +53,37 @@ public class WeatherActivity extends AppCompatActivity {
         player.start();
     }
 
-    public void refresh(){
-        final Handler handler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message msg) {
-                // This method is executed in main thread
-                String content = msg.getData().getString("server_response");
-                Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
-            }
-        };
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-            // this method is run in a worker thread
-                try {
-                // wait for 5 seconds to simulate a long network access
-                    Thread.sleep(5000);
-                }
-                catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                // Assume that we got our data from server
-                Bundle bundle = new Bundle();
-                Bundle.putString("server_response", "some sample json here");
-                // notify main thread
-                Message msg = new Message();
-                msg.setData(bundle);
-                handler.sendMessage(msg);
-            }
-        });
-        t.start();
-    }
+//    public void refresh(){
+//        final Handler handler = new Handler(Looper.getMainLooper()) {
+//            @Override
+//            public void handleMessage(Message msg) {
+//                // This method is executed in main thread
+//                String content = msg.getData().getString("server_response");
+//                Toast.makeText(getApplicationContext(), content, Toast.LENGTH_SHORT).show();
+//            }
+//        };
+//        Thread t = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//            // this method is run in a worker thread
+//                try {
+//                // wait for 5 seconds to simulate a long network access
+//                    Thread.sleep(5000);
+//                }
+//                catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//                // Assume that we got our data from server
+//                Bundle bundle = new Bundle();
+//                Bundle.putString("server_response", "some sample json here");
+//                // notify main thread
+//                Message msg = new Message();
+//                msg.setData(bundle);
+//                handler.sendMessage(msg);
+//            }
+//        });
+//        t.start();
+//    }
 
     @Override
     protected void onStart() {
@@ -163,7 +164,7 @@ public class WeatherActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_refresh:
 //                Toast.makeText(this, "Refreshing...", Toast.LENGTH_SHORT).show();
-                refresh();
+                new refresh().execute();
                 return true;
             case R.id.action_settings:
                 Log.d(STATE, "onOptionsItemSelected: click");
@@ -202,5 +203,30 @@ public class WeatherActivity extends AppCompatActivity {
         }
     }
 
+    private class refresh extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected Void doInBackground(Void... voids) {
+            try {
+                Thread.sleep(1000);
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... voids) {
+
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            Toast.makeText(getApplicationContext(),
+                    "some sample json here",
+                    Toast.LENGTH_SHORT).show();
+            return;
+        }
+    }
 }
